@@ -20,7 +20,7 @@ RUN rm -rf /etc/yum.repos.d/CentOS-[DSfCMV]* \
     && ssh-keygen -t dsa -f /etc/ssh/ssh_host_ed25519_key -N '' 
 
 COPY sshd_config /etc/ssh/sshd_config
-COPY default.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 COPY index.html /opt/sftp/web/upload/index.html
 COPY supervisord.conf /etc/supervisord.conf
 EXPOSE 22 80 
