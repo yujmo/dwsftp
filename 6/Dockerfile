@@ -14,9 +14,12 @@ RUN rm -rf /etc/yum.repos.d/CentOS-[DSfCMV]* \
     && mkdir /opt/sftp/web/upload \
     && chown web:sftp /opt/sftp/web/upload \
     && chmod 755 /opt/sftp/web/upload \
-    && rm -rf /etc/ssh/sshd_config \
+    && rm -rf /etc/ssh/sshd_config /etc/nginx/conf.d/default.conf \
     && ssh-keygen -q -t rsa -b 2048 -f /etc/ssh/ssh_host_rsa_key -N '' \
     && ssh-keygen -q -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -N '' \
     && ssh-keygen -t dsa -f /etc/ssh/ssh_host_ed25519_key -N '' 
 ADD sshd_config /etc/ssh/sshd_config
-CMD ["/usr/sbin/sshd","-D"]
+ADD default.conf /etc/nginx/conf.d/default.conf
+ADD run.sh /run.sh
+RUN chmod 777 /run.sh
+CMD ["/run.sh"]
