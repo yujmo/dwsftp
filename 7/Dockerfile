@@ -1,4 +1,5 @@
 FROM centos:6
+MAINTAINER yujmo yujmo94@gmail.com
 RUN rm -rf /etc/yum.repos.d/CentOS-[DSfCMV]* \
     && yum clean all && yum update -y \
     && yum install openssh openssh-client openssh-server -y \
