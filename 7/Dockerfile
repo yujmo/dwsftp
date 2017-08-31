@@ -12,8 +12,8 @@ RUN rm -rf /etc/yum.repos.d/CentOS-[DSfCMV]* \
     && mkdir /opt/sftp/web/upload \
     && chown web:sftp /opt/sftp/web/upload \
     && chmod 755 /opt/sftp/web/upload \
-    && tee /etc/ssh/sshd_config <<-'EOF'
-    Protocol 2
+    && tee /etc/ssh/sshd_config <<-'EOF' \
+    Protocol 2 
     SyslogFacility AUTHPRIV
     PasswordAuthentication yes
     ChallengeResponseAuthentication no
