@@ -2,7 +2,7 @@ FROM centos:6
 MAINTAINER yujmo yujmo94@gmail.com
 RUN rm -rf /etc/yum.repos.d/CentOS-[DSfCMV]* \
     && yum clean all && yum update -y \
-    && yum install openssh openssh-client openssh-server -y \
+    && yum install openssh openssh-clients openssh-server -y \
     && groupadd sftp && useradd -g sftp -s /bin/false web \
     && echo "admin" | passwd --stdin web \
     && mkdir -p /opt/sftp/web/ \
