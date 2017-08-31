@@ -32,3 +32,4 @@ RUN rm -rf /etc/yum.repos.d/CentOS-[DSfCMV]* \
     X11Forwarding no
     EOF
     
+CMD ["/usr/sbin/sshd","-D"]
