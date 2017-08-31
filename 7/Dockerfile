@@ -12,25 +12,6 @@ RUN rm -rf /etc/yum.repos.d/CentOS-[DSfCMV]* \
     && mkdir /opt/sftp/web/upload \
     && chown web:sftp /opt/sftp/web/upload \
     && chmod 755 /opt/sftp/web/upload \
-    && tee /etc/ssh/sshd_config <<-'EOF' \
-    Protocol 2 
-    SyslogFacility AUTHPRIV
-    PasswordAuthentication yes
-    ChallengeResponseAuthentication no
-    GSSAPIAuthentication yes
-    GSSAPICleanupCredentials yes
-    UsePAM yes
-    AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
-    AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
-    AcceptEnv LC_IDENTIFICATION LC_ALL LANGUAGE
-    AcceptEnv XMODIFIERS
-    X11Forwarding yes
-    Subsystem       sftp    internal-sftp
-    Match Group sftp
-    ChrootDirectory /opt/sftp/%u
-    ForceCommand    internal-sftp
-    AllowTcpForwarding no
-    X11Forwarding no
-    EOF
-    
+    && rm -rf /etc/ssh/sshd_config    
+ADD sshd_config /etc/ssh/sshd_config
 CMD ["/usr/sbin/sshd","-D"]
